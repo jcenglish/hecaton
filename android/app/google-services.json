@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "745827928392",
+    "firebase_url": "https://hecaton-f0287.firebaseio.com",
+    "project_id": "hecaton-f0287",
+    "storage_bucket": "hecaton-f0287.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:745827928392:android:73ff83e1b3887ce0",
+        "android_client_info": {
+          "package_name": "com.hecaton"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "745827928392-mnka1e4hn57ru6it2pj4i1niib70bpkk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeGx9fGiC-JpYzZiDwo25dIi4n9K3du8o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:745827928392:android:48126a9e79e6920c",
+        "android_client_info": {
+          "package_name": "com.jasmineenglish.hecaton"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "745827928392-mnka1e4hn57ru6it2pj4i1niib70bpkk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeGx9fGiC-JpYzZiDwo25dIi4n9K3du8o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
