@@ -1,5 +1,5 @@
-import Period from './Period'
-import Classes from './Classes'
-import Students from './Students'
+import PeriodScreen from './Period'
+import ClassesScreen from './Classes'
+import StudentsScreen from './Students'
 
-exports.modules = { Period, Classes, Students }
+export { PeriodScreen, ClassesScreen, StudentsScreen }
