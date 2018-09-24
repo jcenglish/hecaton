@@ -1,3 +1,5 @@
+import * as api from '../../api/'
+
 /* ACTION TYPES AND CREATORS */
 const ADDED_STUDENT = 'ADDED_STUDENT'
 const DELETED_STUDENT = 'DELETED_STUDENT'
@@ -6,43 +8,43 @@ const GOT_STUDENT = 'GOT_STUDENT'
 const REQUESTED_STUDENT = 'REQUESTED_STUDENT'
 const REQUESTED_STUDENTS = 'REQUESTED_STUDENTS'
 
-// const addedStudent = student => ({
-//   type: ADDED_STUDENT,
-//   student
-// })
+const addedStudent = student => ({
+  type: ADDED_STUDENT,
+  student
+})
 
-// const deletedStudent = studentId => ({
-//   type: DELETED_STUDENT,
-//   studentId
-// })
+const deletedStudent = studentId => ({
+  type: DELETED_STUDENT,
+  studentId
+})
 
-// const gotStudents = students => ({
-//   type: GOT_STUDENTS,
-//   students
-// })
+const gotStudents = students => ({
+  type: GOT_STUDENTS,
+  students
+})
 
-// const gotStudent = student => ({
-//   type: GOT_STUDENT,
-//   student
-// })
+const gotStudent = student => ({
+  type: GOT_STUDENT,
+  student
+})
 
-// const requestedStudent = () => ({
-//   type: REQUESTED_STUDENT
-// })
+const requestedStudent = () => ({
+  type: REQUESTED_STUDENT
+})
 
-// const requestedStudents = () => ({
-//   type: REQUESTED_STUDENTS
-// })
+const requestedStudents = () => ({
+  type: REQUESTED_STUDENTS
+})
 
 // /* THUNK CREATORS */
-// export const getStudents = () => dispatch => {
-//   dispatch(requestedStudents())
-//   try {
-//     axios.get('/api/students').then(res => dispatch(gotStudents(res.data)))
-//   } catch (err) {
-//     console.error('Get Students did not succeed', err)
-//   }
-// }
+export const getStudents = () => dispatch => {
+  dispatch(requestedStudents())
+  try {
+    api.getStudents().then(students => dispatch(gotStudents(students)))
+  } catch (err) {
+    console.error('Get students did not succeed', err)
+  }
+}
 
 // export const addStudent = student => dispatch => {
 //   axios
@@ -70,8 +72,7 @@ const REQUESTED_STUDENTS = 'REQUESTED_STUDENTS'
 const initialState = {
   list: [],
   isFetching: false,
-  selectedStudent: {},
-  isFetchingSingle: false
+  selectedStudent: {}
 }
 
 /* REDUCER */
@@ -80,7 +81,7 @@ export default (state = initialState, action) => {
     case REQUESTED_STUDENT: {
       return {
         ...state,
-        isFetchingSingle: true
+        isFetching: true
       }
     }
     case REQUESTED_STUDENTS: {
@@ -100,7 +101,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         selectedStudent: action.student,
-        isFetchingSingle: false
+        isFetching: false
       }
     }
     case ADDED_STUDENT: {
