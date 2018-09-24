@@ -38,9 +38,9 @@ const createApp = () => {
 
     client.messages
       .create({
-        from: '+19542808580',
+        from: process.env.TWILIO_PHONE_NUM,
         body: req.body.message,
-        to: '+19546656852'
+        to: req.body.phoneNumber
       })
       .then(message => console.log(message.sid))
       .done()
