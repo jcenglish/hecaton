@@ -1,4 +1,4 @@
-import * as api from '../../api/'
+import axios from 'axios'
 
 /* ACTION TYPES AND CREATORS */
 const ADDED_STUDENT = 'ADDED_STUDENT'
@@ -40,7 +40,7 @@ const requestedStudents = () => ({
 export const getStudents = () => dispatch => {
   dispatch(requestedStudents())
   try {
-    api.getStudents().then(students => dispatch(gotStudents(students)))
+    axios.get('/api/students').then(students => dispatch(gotStudents(students)))
   } catch (err) {
     console.error('Get students did not succeed', err)
   }
