@@ -7,26 +7,19 @@
  */
 
 import React, { Component } from 'react'
-import { RootStack } from './navigation'
-import { connect } from 'react-redux'
-import { loadData } from './store'
+import { connect, Provider as StoreProvider } from 'react-redux'
+import store, { getEmployees, getStudents, getGuardians } from './store'
+import { Provider as PaperProvider } from 'react-native-paper'
+import RootStack from './navigation/RootStack'
 
-class App extends Component {
-  componentDidMount() {
-    this.props.loadInitialData()
-  }
+export default class App extends Component {
   render() {
-    return <RootStack />
+    return (
+      <StoreProvider store={store}>
+        <PaperProvider>
+          <RootStack />
+        </PaperProvider>
+      </StoreProvider>
+    )
   }
 }
-
-const mapDispatchToProps = dispatch => {
-  return {
-    loadInitialData: () => dispatch(loadData())
-  }
-}
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(App)

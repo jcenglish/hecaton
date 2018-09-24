@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start-www": "node server",
     "test": "jest"
   },
   "dependencies": {
@@ -15,9 +16,9 @@
     "react-native-paper": "^2.0.1",
     "react-native-vector-icons": "^5.0.0",
     "react-navigation": "^2.16.0",
+    "react-navigation-redux-helpers": "^2.0.6",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {

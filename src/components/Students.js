@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
+import { connect } from 'react-redux'
 import { Student } from './'
 
-export default class Students extends Component {
+class Students extends Component {
   render() {
-    return (
-      <View>
-        <Student />
-      </View>
-    )
+    const students = this.props.students
+    return <View />
   }
 }
+
+export default Students

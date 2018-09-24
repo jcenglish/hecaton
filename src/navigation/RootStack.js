@@ -1,17 +1,16 @@
 import { createMaterialTopTabNavigator } from 'react-navigation'
-import { ClassesScreen, PeriodScreen, StudentsScreen } from '../screens'
+
+import { PeriodScreen, StudentsScreen } from '../screens'
+import { connect } from 'react-redux'
 
 export default createMaterialTopTabNavigator(
   {
-    Period: {
+    Class: {
       screen: PeriodScreen
     },
     Students: {
       screen: StudentsScreen
-    },
-    Classes: {
-      screen: ClassesScreen
     }
   },
-  { initialRouteNam: 'Period' }
+  { initialRouteName: 'Class' }
 )

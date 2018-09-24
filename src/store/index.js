@@ -1,18 +1,18 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
-import student from './reducers/student'
+import students, { getStudents } from './reducers/student'
+import guardians, { getGuardians } from './reducers/guardian'
+import employees, { getEmployees } from './reducers/employee'
 
 const reducer = combineReducers({
-  student
+  students,
+  guardians,
+  employees
 })
 
-const middleware = applyMiddleware(
-  thunkMiddleware,
-  createLogger({ collapsed: true })
-)
+const middleware = applyMiddleware(thunkMiddleware)
 
 const store = createStore(reducer, middleware)
 
+export { getStudents, getGuardians, getEmployees }
 export default store
-export * from './reducers/student'

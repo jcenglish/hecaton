@@ -1,13 +1,30 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
-import { Students } from '../components'
+import { ScrollView, Text } from 'react-native'
+import { Student } from '../components'
+import { getStudents } from '../store'
+import { connect } from 'react-redux'
+import students from '../store/reducers/students'
 
-export default class StudentsScreen extends Component {
+class StudentsScreen extends Component {
   render() {
     return (
-      <View>
-        <Students />
-      </View>
+      <ScrollView>
+        {students.map(student => (
+          <Student
+            key={student.id}
+            firstName={student.firstName}
+            lastName={student.lastName}
+          />
+        ))}
+      </ScrollView>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    students: state.students.list
+  }
+}
+
+export default connect(mapStateToProps)(StudentsScreen)
