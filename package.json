@@ -7,6 +7,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "jsc-android": "224109.x.x",
+    "firebase": "^5.5.1",
     "react": "16.5.0",
     "react-native": "0.57.1",
     "react-native-paper": "^2.0.1",
