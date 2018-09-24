@@ -1,22 +1,20 @@
 const router = require('express').Router()
-const {Employee, Student, Class} = require('../db/models')
+const { Student } = require('../db/models')
 module.exports = router
 
-router.get('/:employeeId/classes', async (req, res, next) => {
+router.get('/students', async (req, res, next) => {
   try {
-    const classes = await Employee.findById(req.params.employeeId).getClasses()
+    const students = await Class.findById(req.params.classId).getRoster()
     res.json(classes)
   } catch (err) {
     next(err)
   }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    const employee = await Employee.findById(req.params.id, {
-      attributes: ['id', 'email']
-    })
-    res.json(employee)
+    const classes = await Class.findAll()
+    res.json(classes)
   } catch (err) {
     next(err)
   }

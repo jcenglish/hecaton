@@ -1,10 +1,6 @@
 const Employee = require('./employee')
 const Guardian = require('./guardian')
 const Student = require('./student')
-const Job = require('./job')
-const PhoneNumber = require('./phoneNumber')
-const Address = require('./address')
-const Class = require('./class')
 const Role = require('./role')
 
 /**
@@ -14,31 +10,17 @@ const Role = require('./role')
  *    BlogPost.belongsTo(User)
  */
 
-Employee.hasOne(Job)
-Employee.hasMany(Class)
-Employee.hasOne(Address)
+// Role.belongsToMany(Employee) // Volunteer, Team Leader, etc... unpaid roles
+// Role.belongsToMany(Guardian)
+// Role.belongsToMany(Student)
 
-Role.belongsToMany(Employee) // Volunteer, Team Leader, etc... unpaid roles
-Role.belongsToMany(Guardian)
-Role.belongsToMany(Student)
+// Student.belongsToMany(Guardian, {
+//   through: 'Family'
+// })
 
-Student.belongsToMany(Class, {
-  through: 'Roster'
-})
-Student.belongsToMany(Guardian, {
-  through: 'Family'
-})
-Student.hasOne(Address)
-
-Guardian.belongsToMany(Student, {
-  through: 'Family' // Define relationship in model
-})
-Guardian.hasOne(Address)
-
-PhoneNumber.belongsToMany(Guardian)
-Address.belongsToMany(Guardian)
-PhoneNumber.belongsToMany(Employee)
-Address.belongsToMany(Employee)
+// Guardian.belongsToMany(Student, {
+//   through: 'Family' // Define relationship in model
+// })
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -49,5 +31,6 @@ Address.belongsToMany(Employee)
 module.exports = {
   Employee,
   Student,
-  Guardian
+  Guardian,
+  Role
 }

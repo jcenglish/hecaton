@@ -1,10 +1,11 @@
-const crypto = require('crypto')
 const Sq = require('sequelize')
 const db = require('../db')
+const twilio = require('twilio')
+const client = new twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN)
 
-const Employee = db.define('emplyee', {
+const Employee = db.define('employee', {
   email: {
-    type: Sq.STRING,
+    type: Sq.STRING, // MOCK thisjasmine0@gmail.com
     validate: {
       isEmail: true
     }
@@ -15,30 +16,8 @@ const Employee = db.define('emplyee', {
   lastName: {
     type: Sq.STRING
   },
-  // startingDate: {
-  //   type: Sq.DATE
-  // },
-  // endingDate: {
-  //   type: Sq.DATE
-  // },
-  password: {
-    type: Sq.STRING,
-    // Making `.password` act like a func hides it when serializing to JSON.
-    // This is a hack to get around Sequelize's lack of a "private" option.
-    get() {
-      return () => this.getDataValue('password')
-    }
-  },
-  salt: {
-    type: Sq.STRING,
-    // Making `.salt` act like a function hides it when serializing to JSON.
-    // This is a hack to get around Sequelize's lack of a "private" option.
-    get() {
-      return () => this.getDataValue('salt')
-    }
-  },
-  googleId: {
-    type: Sq.STRING
+  role: {
+    type: Sq.INTEGER // MOCK 0=Teacher, 1=Security, 3=Principal
   }
 })
 
@@ -47,34 +26,19 @@ module.exports = Employee
 /**
  * instanceMethods
  */
-Employee.prototype.correctPassword = function(candidatePwd) {
-  return Employee.encryptPassword(candidatePwd, this.salt()) === this.password()
+Employee.prototype.sendSMS = function(body, phoneNumber) {
+  client.messages
+    .create({
+      body: body,
+      to: '+1' + phoneNumber,
+      from: '+19546656852'
+    })
+    .then(message => console.log(message.sid))
 }
-
 /**
  * classMethods
  */
-Employee.generateSalt = function() {
-  return crypto.randomBytes(16).toString('base64')
-}
-
-Employee.encryptPassword = function(plainText, salt) {
-  return crypto
-    .createHash('RSA-SHA256')
-    .update(plainText)
-    .update(salt)
-    .digest('hex')
-}
 
 /**
  * hooks
  */
-const setSaltAndPassword = user => {
-  if (user.changed('password')) {
-    user.salt = Employee.generateSalt()
-    user.password = Employee.encryptPassword(user.password(), user.salt())
-  }
-}
-
-Employee.beforeCreate(setSaltAndPassword)
-Employee.beforeUpdate(setSaltAndPassword)
