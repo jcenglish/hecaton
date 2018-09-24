@@ -7,27 +7,26 @@
  */
 
 import React, { Component } from 'react'
-import { Platform, StyleSheet, Text, View } from 'react-native'
-import { createMaterialTopTabNavigator } from 'react-navigation'
-import { ClassesScreen, PeriodScreen, StudentsScreen } from './screens'
+import { RootStack } from './navigation'
+import { connect } from 'react-redux'
+import { loadData } from './store'
 
-const RootStack = createMaterialTopTabNavigator(
-  {
-    Period: {
-      screen: PeriodScreen
-    },
-    Students: {
-      screen: StudentsScreen
-    },
-    Classes: {
-      screen: ClassesScreen
-    }
-  },
-  { initialRouteNam: 'Period' }
-)
-
-export default class App extends Component {
+class App extends Component {
+  componentDidMount() {
+    this.props.loadInitialData()
+  }
   render() {
     return <RootStack />
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loadInitialData: () => dispatch(loadData())
+  }
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(App)

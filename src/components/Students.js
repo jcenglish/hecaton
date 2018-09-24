@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
-import { Students } from '../components'
+import { Student } from './'
 
-export default class StudentsScreen extends Component {
+export default class Students extends Component {
   render() {
     return (
       <View>
-        <Students />
+        <Student />
       </View>
     )
   }

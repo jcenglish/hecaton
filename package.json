@@ -7,8 +7,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "jsc-android": "224109.x.x",
     "firebase": "^5.5.1",
+    "jsc-android": "224109.x.x",
     "react": "16.5.0",
     "react-native": "0.57.1",
     "react-native-paper": "^2.0.1",
@@ -16,6 +16,7 @@
     "react-navigation": "^2.16.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
