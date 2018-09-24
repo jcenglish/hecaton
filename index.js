@@ -4,6 +4,9 @@ import { AppRegistry } from 'react-native'
 import App from './src/App'
 import { name as appName } from './app.json'
 
+// FIX problem with React-Native, Firebase and timers setting off this yellow box
+console.ignoredYellowBox = ['Setting a timer']
+
 // Initialize Firebase
 const firebaseConfig = {
   apiKey: 'AIzaSyCcqjfot2mopAg1tcpDlUacjviAAibbJsQ',
